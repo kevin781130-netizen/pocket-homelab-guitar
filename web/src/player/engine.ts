@@ -149,7 +149,7 @@ export class TabEngine {
     // (not api.midiLoaded: in 1.8.4 subscribing to it recurses forever in the worker player)
     on<AT.synth.PlaybackRangeChangedEventArgs>(api.playbackRangeChanged, e => this.onRange(e.playbackRange))
     on<void>(api.playerFinished as never, () => { if (!this.state.get().looping || !this.state.get().range) this.emit('finished', this.state.get().speed) })
-    on<AT.synth.ActiveBeatsChangedEventArgs>(api.activeBeatsChanged, e => { if (e.activeBeats.length) this.beats.set(e.activeBeats, true) })
+    on<AT.synth.ActiveBeatsChangedEventArgs>(api.activeBeatsChanged, e => { this.beats.set(e.activeBeats, true) })
     on<AT.model.Beat>(api.beatMouseDown, b => { this.beats.set([b], true); this.emit('beatClicked', b) })
     try {
       const score = at.importer.ScoreLoader.loadScoreFromBytes(new Uint8Array(data), settings)
