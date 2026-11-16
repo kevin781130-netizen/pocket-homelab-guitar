@@ -231,3 +231,19 @@ form.pp-row input { flex: 1; min-width: 0; }
 .st-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex: none; }
 .st-busy p { margin: 0; }
 .st-pop .st-busy { padding: 14px 16px; gap: 10px; }
+
+/* Opt-in single-note listening: a compact strip above the existing transport. */
+.practice-listen {
+  display: flex; align-items: center; gap: 12px; min-height: 43px; padding: 5px 12px;
+  background: var(--surface); border-top: 1px solid var(--border);
+}
+.practice-listen .btn { white-space: nowrap; flex: none; }
+.practice-listen-result { flex: 1; min-width: 0; font-size: 12.5px; color: var(--muted); overflow-wrap: anywhere; }
+.practice-listen-result.hit { color: var(--success); font-weight: 650; }
+.practice-listen-result.close { color: var(--warning); font-weight: 650; }
+.practice-listen-result.miss { color: var(--danger); font-weight: 650; }
+.practice-listen-note { font-size: 11.5px; color: var(--muted); text-align: right; }
+@media (max-width: 767px) {
+  .practice-listen { gap: 8px; padding: 5px 8px; }
+  .practice-listen-note { display: none; }
+}

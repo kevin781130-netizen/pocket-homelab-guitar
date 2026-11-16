@@ -14,6 +14,7 @@ import { TabEngine, useEngineState, type ScoreColors, type ViewOptions } from '.
 import { analyse, mainTrack } from '../player/music'
 import { Transport, type ViewPrefs } from '../player/Transport'
 import { Fretboard } from '../player/Fretboard'
+import { PracticeListening } from '../player/PracticeListening'
 import { SectionsPanel, type Trainer } from '../player/SectionsPanel'
 import { SongPanel, STATUS } from '../player/SongPanel'
 import { RecordingPanel } from '../player/RecordingPanel'
@@ -417,6 +418,7 @@ function Player({ tabId }: { tabId: number }) {
       {view.fretboard && st.score && <Fretboard engine={engine} score={st.score} track={fretTrack} leftHanded={!!s?.left_handed} />}
 
       <div className="tp-wrap">
+        <PracticeListening engine={engine} trackIndex={fretTrack} ready={st.playerReady && st.phase !== 'error'} playing={st.playing} />
         {!st.playerReady && st.score && st.phase !== 'error' && <div className="tp-soundload small muted" aria-live="polite">Loading the instrument sounds… <span className="tnum">{Math.round(st.soundLoad * 100)}%</span></div>}
         <Transport engine={engine} st={st} speedStep={s?.speed_step || 5} tracks={shown} setTracks={setTracks} view={view} setView={setView}
           todayS={timer.todayS + timerHereS} onLoop={toggleLoop} hasRecording={!!tab?.recording} soundLabel={sound === 'recording' ? 'the record only' : sound === 'both' ? 'with the record' : 'tab sound'} />
